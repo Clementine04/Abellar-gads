@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNO Online | Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="screen menu-layout">
+    <img src="/assets/ISU LOGO.png" class="corner-logo" alt="School logo">
+    <div class="banner">
+      <img src="/assets/logo.png" alt="UNO" style="height:48px;">
+      <div class="badge" id="welcome-label"></div>
+    </div>
+    <button class="btn logout" id="logout-btn">Logout</button>
+
+    <div class="hero-visual">
+      <img src="/assets/card-back.png" alt="UNO deck" style="max-width:360px;border-radius:18px;">
+      <img src="/cards-front/1R.png" class="floating-card left" alt="UNO card">
+      <img src="/cards-front/7G.png" class="floating-card right" alt="UNO card">
+    </div>
+
+    <div class="panel" style="min-width:320px;">
+      <div style="text-align:center;margin-bottom:12px;">
+        <img src="/assets/logo.png" alt="UNO" style="height:56px;">
+        <h2>Create a room or join by code</h2>
+      </div>
+      <div class="stacked">
+        <label>Game Code</label>
+        <input id="join-code" placeholder="ABCDE" maxlength="5" class="mono">
+        <div class="action-row">
+          <button class="btn alt" id="join-btn">Join Game</button>
+          <button class="btn" id="create-btn">Create Game</button>
+        </div>
+      </div>
+
+      <h3 style="margin-top:22px;">Leaderboard <span class="badge">Most wins</span></h3>
+      <table class="leaderboard" id="leaderboard-table">
+        <thead>
+          <tr><th>#</th><th>Medal</th><th>Player</th><th>Wins</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": "0ab1739d-8ee8-413f-886b-69dffd53e6a5",
+      "username": "Pat",
+      "passwordHash": "$2a$10$hHgrLIYuwvL0Kl0T9ZHn9e4rsjvdPxsLysqT6HgkpgP5tv9YCbmiS",
+      "wins": 18
+    },
+    {
+      "id": "574abd7f-34c1-40c9-9458-8a031d6d562b",
+      "username": "Jay",
+      "passwordHash": "$2a$10$JtLhJ/MWbnxaZ/AmwVcQi.RDo9jC5uuID67tClDtOe3Fu2oo1TxTq",
+      "wins": 17
+    }
+  ]
+}

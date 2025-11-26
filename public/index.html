@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNO Online | Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="screen auth-layout">
+    <img src="/assets/ISU LOGO.png" class="corner-logo" alt="School logo">
+
+    <div class="hero-visual">
+      <img src="/assets/Landing-Page.gif" alt="UNO cards animation">
+      <img src="/cards-front/5R.png" class="floating-card left" alt="UNO card">
+      <img src="/cards-front/skipG.png" class="floating-card right" alt="UNO card">
+    </div>
+
+    <div class="panel" style="min-width: 320px; max-width: 420px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <img src="/assets/logo.png" alt="UNO logo" style="height:48px;">
+        <div>
+          <h1>UNO Online</h1>
+          <div class="helper">Login or register to start playing</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="btn tab-btn active" id="tab-login">Login</button>
+        <button class="btn tab-btn" id="tab-register">Register</button>
+      </div>
+
+      <form id="auth-form" class="stacked">
+        <label for="username">Username</label>
+        <input id="username" name="username" placeholder="Player name">
+
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" placeholder="Password">
+
+        <button type="submit" class="btn" id="auth-submit">Continue</button>
+        <div class="helper" id="auth-message"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/auth.js"></script>
+</body>
+</html>
