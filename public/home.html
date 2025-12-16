@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UNO Online - Lobby</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="home-body">
+  <img src="/isu-logo.png" alt="ISU watermark" class="watermark" />
+  <header class="home-header">
+    <div class="logo-wrap">
+      <img src="/logo.png" alt="UNO" class="logo" />
+      <div class="user-chip" id="user-chip"></div>
+    </div>
+    <button id="logout" class="ghost" type="button">Logout</button>
+  </header>
+
+  <main class="home-screen">
+    <div class="floating-cards">
+      <img src="/cards-front/1R.png" alt="" />
+      <img src="/cards-front/9G.png" alt="" />
+      <img src="/cards-front/skipB.png" alt="" />
+      <img src="/cards-front/3Y.png" alt="" />
+      <img src="/cards-front/D2R.png" alt="" />
+      <img src="/cards-front/W.png" alt="" />
+      <img src="/cards-front/7B.png" alt="" />
+    </div>
+    <section class="home-panel card">
+      <img src="/isu-logo.png" class="hero-isu-logo" alt="ISU Logo" />
+      <img src="/logo.png" class="hero-logo" alt="UNO" />
+      <p class="home-tagline">Create a room or join by code to play with a friend.</p>
+      <div class="home-actions">
+        <div class="home-join">
+          <input id="join-code" placeholder="Game Code" />
+          <button id="join-room" type="button" class="btn-green">Join Game</button>
+        </div>
+        <div class="home-divider">OR</div>
+        <button id="create-room" class="btn-yellow" type="button">Create Game</button>
+      </div>
+      <div id="room-info" class="announcement" style="display: none"></div>
+    </section>
+
+    <section class="leaderboard-card card">
+      <div class="stacked">
+        <h3>Leaderboard</h3>
+        <span class="pill small">Most wins</span>
+      </div>
+      <table class="leaderboard" id="leaderboard">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Medal</th>
+            <th>Player</th>
+            <th>Wins</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+  <script src="home.js"></script>
+</body>
+
+</html>

@@ -1,50 +1,65 @@
-const loginTab = document.getElementById('tab-login');
-const registerTab = document.getElementById('tab-register');
-const form = document.getElementById('auth-form');
-const message = document.getElementById('auth-message');
-const submitBtn = document.getElementById('auth-submit');
+const state = {
+  mode: 'login',
+};
 
-let mode = 'login';
+const qs = (id) => document.getElementById(id);
 
-if (localStorage.getItem('uno_token')) {
-  window.location.href = '/menu.html';
+function switchMode(mode) {
+  state.mode = mode;
+  qs('login-tab').classList.toggle('active', mode === 'login');
+  qs('register-tab').classList.toggle('active', mode === 'register');
+  qs('auth-submit').textContent = mode === 'login' ? 'Login' : 'Register';
 }
 
-loginTab.addEventListener('click', () => setMode('login'));
-registerTab.addEventListener('click', () => setMode('register'));
-
-function setMode(next) {
-  mode = next;
-  loginTab.classList.toggle('active', mode === 'login');
-  registerTab.classList.toggle('active', mode === 'register');
-  submitBtn.textContent = mode === 'login' ? 'Continue' : 'Create account';
-  message.textContent = '';
-}
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const username = document.getElementById('username').value.trim();
-  const password = document.getElementById('password').value.trim();
-  if (!username || !password) {
-    message.textContent = 'Please fill all fields.';
-    return;
+async function auth(endpoint, payload) {
+  const res = await fetch(`/api/${endpoint}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.message || 'Unable to authenticate');
   }
-  submitBtn.disabled = true;
-  message.textContent = 'Working...';
+  return res.json();
+}
+
+async function tryAutoLogin() {
+  const token = localStorage.getItem('uno_token');
+  if (!token) return false;
   try {
-    const res = await fetch(`/api/${mode}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Failed');
-    localStorage.setItem('uno_token', data.token);
-    localStorage.setItem('uno_username', data.username);
-    window.location.href = '/menu.html';
-  } catch (err) {
-    message.textContent = err.message;
-  } finally {
-    submitBtn.disabled = false;
+    const res = await fetch('/api/me', { headers: { Authorization: `Bearer ${token}` } });
+    if (!res.ok) throw new Error('invalid');
+    window.location.href = '/home.html';
+    return true;
+  } catch {
+    localStorage.removeItem('uno_token');
+    localStorage.removeItem('uno_user');
+    return false;
   }
-});
+}
+
+function init() {
+  tryAutoLogin();
+  qs('login-tab').onclick = () => switchMode('login');
+  qs('register-tab').onclick = () => switchMode('register');
+
+  qs('auth-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const username = qs('username').value.trim();
+    const password = qs('password').value.trim();
+    const error = qs('auth-error');
+    error.style.display = 'none';
+    try {
+      const data = await auth(state.mode === 'login' ? 'login' : 'register', { username, password });
+      localStorage.setItem('uno_token', data.token);
+      localStorage.setItem('uno_user', data.username);
+      window.location.href = '/home.html';
+    } catch (err) {
+      error.textContent = err.message;
+      error.style.display = 'block';
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', init);
