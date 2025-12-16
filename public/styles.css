@@ -545,6 +545,38 @@ button.ghost {
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.38));
 }
 
+/* Discard card wrapper with CCSICT and ISU logos */
+.discard-card-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.discard-card-wrapper::before,
+.discard-card-wrapper::after {
+  content: '';
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.discard-card-wrapper::before {
+  top: 10%;
+  left: 10%;
+  background-image: url('/ccsict-logo.png');
+}
+
+.discard-card-wrapper::after {
+  bottom: 10%;
+  right: 10%;
+  background-image: url('/isu-logo.png');
+}
+
 .color-indicator {
   width: 26px;
   height: 26px;

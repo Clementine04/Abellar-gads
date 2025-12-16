@@ -1,67 +1,72 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UNO Online - Game</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body class="game-body">
-    <img src="/isu-logo.png" alt="ISU watermark" class="watermark" />
-    <div class="uno-sticker">
-      <img src="/logo.png" alt="UNO" />
-    </div>
-    <div class="audio-stack">
-      <button id="music-toggle" class="icon-btn green" type="button" title="Toggle music">🔊</button>
-      <button id="sfx-toggle" class="icon-btn green" type="button" title="Toggle SFX">🔈</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UNO Online - Game</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="game-body">
+  <img src="/isu-logo.png" alt="ISU watermark" class="watermark" />
+  <div class="uno-sticker">
+    <img src="/logo.png" alt="UNO" />
+  </div>
+  <div class="audio-stack">
+    <button id="music-toggle" class="icon-btn green" type="button" title="Toggle music">🔊</button>
+    <button id="sfx-toggle" class="icon-btn green" type="button" title="Toggle SFX">🔈</button>
+  </div>
+
+  <header class="game-top">
+    <div class="player-label" id="player1-label">Player 1</div>
+    <div class="game-code" id="room-code-display">Game Code: ----</div>
+    <div class="player-label right" id="player2-label">Player 2</div>
+  </header>
+
+  <main class="game-board">
+    <div class="opponent-row">
+      <div class="opponent-hand" id="opponent-hand"></div>
     </div>
 
-    <header class="game-top">
-      <div class="player-label" id="player1-label">Player 1</div>
-      <div class="game-code" id="room-code-display">Game Code: ----</div>
-      <div class="player-label right" id="player2-label">Player 2</div>
-    </header>
+    <div class="turn-banner" id="turn-banner">Turn: -</div>
 
-    <main class="game-board">
-      <div class="opponent-row">
-        <div class="opponent-hand" id="opponent-hand"></div>
+    <div class="table-row">
+      <div class="table-col left">
+        <button id="draw-btn" class="btn-blue" type="button">DRAW CARD</button>
       </div>
-
-      <div class="turn-banner" id="turn-banner">Turn: -</div>
-
-      <div class="table-row">
-        <div class="table-col left">
-          <button id="draw-btn" class="btn-blue" type="button">DRAW CARD</button>
-        </div>
-        <div class="table-col center">
-          <div class="discard-wrap">
+      <div class="table-col center">
+        <div class="discard-wrap">
+          <div class="discard-card-wrapper">
             <img id="discard-card" src="/card-back.png" alt="Top card" class="discard-card" />
-            <div class="color-indicator" id="current-color"></div>
           </div>
-        </div>
-        <div class="table-col right">
-          <div class="action-stack">
-            <button id="uno-btn" class="btn-yellow" type="button">UNO</button>
-          </div>
+          <div class="color-indicator" id="current-color"></div>
         </div>
       </div>
-
-      <div class="status-bar">
-        <div id="deck-count" class="status-chip">Deck: 0</div>
-        <div id="discard-count" class="status-chip">Discard: 0</div>
-        <div id="last-action" class="status-chip wide">Waiting for players...</div>
+      <div class="table-col right">
+        <div class="action-stack">
+          <button id="uno-btn" class="btn-yellow" type="button">UNO</button>
+        </div>
       </div>
+    </div>
 
-      <div class="hand-row" id="hand-row"></div>
+    <div class="status-bar">
+      <div id="deck-count" class="status-chip">Deck: 0</div>
+      <div id="discard-count" class="status-chip">Discard: 0</div>
+      <div id="last-action" class="status-chip wide">Waiting for players...</div>
+    </div>
 
-      <div class="bottom-row">
-        <button id="quit-btn" class="btn-red" type="button">QUIT</button>
-      </div>
-    </main>
+    <div class="hand-row" id="hand-row"></div>
 
-    <div class="badge status" id="game-status">Waiting...</div>
+    <div class="bottom-row">
+      <button id="quit-btn" class="btn-red" type="button">QUIT</button>
+    </div>
+  </main>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="game.js"></script>
-  </body>
+  <div class="badge status" id="game-status">Waiting...</div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="game.js"></script>
+</body>
+
 </html>
